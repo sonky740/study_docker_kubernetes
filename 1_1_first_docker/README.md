@@ -86,8 +86,8 @@ ex) `docker cp dummy/. thirsty_elion:/test` dummy/test.txt
 ## docker run --name [NAME] [IMAGE ID]
 
 컨테이너를 실행할 때 이름을 지정할 수 있다.  
-로컬에 해당하는 이미지가 존재하지 않으면 docker hub에서 똑같은 이름의 이미지를다
-운받아서 실행한다.
+로컬에 해당하는 이미지가 존재하지 않으면 docker hub에서 똑같은 이름의 이미지를
+다운받아서 실행한다.
 
 ## docker tag [name] [name]:[tag]
 

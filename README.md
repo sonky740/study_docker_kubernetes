@@ -52,10 +52,17 @@ Docker와 가상 머신(VM)은 모두 소프트웨어 애플리케이션을 배�
 - 성능 오버헤드: 가상 머신보다 리소스 효율이 높지만 컨테이너화와 관련된 성능 오
   버헤드가 여전히 존재.
 
-
 ## Docker 명령어
 
 - docker build . : 현재 디렉토리에 있는 Dockerfile을 사용하여 이미지를 빌드함.
 - docker run -p 80:80 id : id에 해당하는 이미지를 실행함.
 - docker ps : 실행 중인 컨테이너 목록을 보여줌.
 - docker stop NAMES : 실행 중인 컨테이너를 중지함.
+
+## Docker 공유
+
+- docker push [image name] : 로컬에 있는 이미지를 Docker Hub에 공유함.
+  - docker login 후 사용 가능.
+  - docker tag [image name] [docker hub id]/[image name] : 이미지에 태그를 붙임.
+    [docker hub id]/[image name]: `[image name]`이 됨.
+  - docker pull [image name] : Docker Hub에 공유된 이미지를 로컬에 다운로드함.
