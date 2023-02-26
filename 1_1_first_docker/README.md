@@ -19,6 +19,12 @@
 
 현재 디렉토리에 있는 Dockerfile을 읽어서 이미지를 빌드한다.
 
+## docker build -t [NAME]:[TAG] .
+
+이미지를 빌드할 때 이름과 태그를 지정할 수 있다.  
+이미지 네임:태그를 지정했다면 `docker run [NAME]:[TAG]` 와 같이 컨테이너를 실행
+할 수 있다.
+
 ## docker run -p 3000:80 [IMAGE ID]
 
 -p "액세스 하려는 로컬포트:컨테이너 포트"  
@@ -58,7 +64,7 @@ detached 모드인 컨테이너에 접속할 수 있다.
 ## docker rmi [IMAGE ID]
 
 이미지를 삭제한다. 여러개를 삭제하려면 `docker rmi [IMAGE ID] [IMAGE ID]` 와 같
-이 파싱하면 된다.  
+이 파싱하면 된다.
 
 ## docker image prune
 
@@ -71,3 +77,18 @@ detached 모드인 컨테이너에 접속할 수 있다.
 ## docker image inspect [IMAGE ID]
 
 이미지의 정보를 확인할 수 있다.
+
+## docker cp [OPTIONS] [NAMES]:[PATH] [PATH]
+
+ex) `docker cp dummy/. thirsty_elion:/test` dummy/test.txt  
+`docker cp thirsty_elion:/test dummy`를 치면 dummy/test/test.txt가 생성된다.
+
+## docker run --name [NAME] [IMAGE ID]
+
+컨테이너를 실행할 때 이름을 지정할 수 있다.  
+로컬에 해당하는 이미지가 존재하지 않으면 docker hub에서 똑같은 이름의 이미지를다
+운받아서 실행한다.
+
+## docker tag [name] [name]:[tag]
+
+앞의 이미지를 뒤의 이름:태그로 복사한다.
