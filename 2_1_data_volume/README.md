@@ -7,6 +7,15 @@
 
 volume 목록을 확인
 
+## docker volume create [VOL_NAME]
+
+volume 생성  
+네임드 볼륨에 사용할 수 있다.
+
+## docker volume inspect [VOL_NAME]
+
+volume 정보 확인
+
 ## docker volume rm [VOL_NAME]
 
 volume 삭제 `docker volume prune`로 전체 삭제 가능
@@ -32,3 +41,17 @@ node_modules때문에 익명 볼륨을 지정해야 함. ex) docker run -d -p 30
 --name feedback-app -v feedback:/app/feedback -v
 "D:\\code\study_docker_kubernetes\2_1_data_volume\:/app" -v /app/node_modules
 feedback-node:volumes
+
+## docker -v [HOST_PATH]:[CONTAINER_PATH]:ro
+
+익명 볼륨을 읽기 전용으로 바인드 마운트
+
+## docker --env [ENV_NAME]=[ENV_VALUE]
+
+컨테이너에 환경변수를 지정  
+`-e [ENV_NAME]=[ENV_VALUE]` 로도 가능  
+`--env-file [FILE_PATH]` 로도 가능
+
+## docker build --build-arg [ARG_NAME]=[ARG_VALUE]
+
+build할 때 환경변수 인자를 지정 (ARG)
