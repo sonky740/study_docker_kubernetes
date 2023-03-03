@@ -28,6 +28,10 @@
 - docker build -t goals-node .
 - docker run --name goals-backend --rm -d -p 80:80 --network goals-net goals-node
 
+<!-- 통합 버전 & 실시간 반영 -->
+- docker build -t goals-node .
+- docker run --rm --name goals-backend -v logs:/app/logs -v "D:\\code\study_docker_kubernetes\4_mutiple\backend\:/app" -v /app/node_modules -e MONGODB_USERNAME=sonky740 -d -p 80:80 --network goals-net goals-node
+
 ## frontend
 
 <!-- 따로 버전 -->
@@ -38,3 +42,18 @@
 
 - docker build -t goals-react .
 - docker run --name goals-frontend --rm -p 3000:3000 -it goals-react
+
+<!-- 통합 버전 & 실시간 반영 -->
+
+- docker build -t goals-react .
+- docker run -e CHOKIDAR_USEPOLLING=true -v "D:\\code\study_docker_kubernetes\4_mutiple\frontend\src\:/app/src" --name goals-frontend --rm -p 3000:3000 -it goals-react
+
+## etc
+
+윈도우에서 실시간 반영을 하려면
+
+backend의 경우 `"scripts": "nodemon -L server.js"`  
+frontend의 경우 `docker run -e CHOKIDAR_USEPOLLING=true ...` 을 쓰거나
+
+Windows 시스템에서 Linux 파일 시스템을 사용하도록 설정해야 한다.
+https://devblogs.microsoft.com/commandline/access-linux-filesystems-in-windows-and-wsl-2/
