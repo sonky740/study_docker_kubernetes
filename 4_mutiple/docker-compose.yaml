@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: 'mongo'
+    container_name: 'goals-mongo'
+    volumes:
+      - data:/data/db
+    env_file:
+      - ./env/mongo.env
+      # environment:
+      # - MONGO_INITDB_ROOT_USER_NAME=sonky740
+      # MONGO_INITDB_ROOT_USERNAME: sonky740
+      # MONGO_INITDB_ROOT_PASSWORD: eqwwr
+      # 네트워크는 굳이 필요 없음.
+      # 동일한 컴포즈 파일에 정의된 서비스들은 기본적으로 같은 네트워크에 연결됨.
+      # networks:
+      #   - goals-net
+
+  backend:
+    build: ./backend
+    container_name: goals-backend
+    ports:
+      - '80:80'
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    #   args:
+    #     some-arg: 1
+
+  frontend:
+    build: ./frontend
+    container_name: goals-frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true # -i
+    tty: true # -t
+    depends_on:
+      - backend
+
+volumes:
+  # 네임드 볼륨을 여기에 정의.
+  data:
+  logs:

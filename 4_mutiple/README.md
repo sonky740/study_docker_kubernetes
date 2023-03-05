@@ -57,3 +57,20 @@ frontend의 경우 `docker run -e CHOKIDAR_USEPOLLING=true ...` 을 쓰거나
 
 Windows 시스템에서 Linux 파일 시스템을 사용하도록 설정해야 한다.
 https://devblogs.microsoft.com/commandline/access-linux-filesystems-in-windows-and-wsl-2/
+
+## docker-compose
+
+여러개의 도커를 하나의 yaml 파일로 관리할 수 있다.  
+더불어 동일한 컴포즈 파일에 정의된 컨테이너는 동일한 네트워크에 연결되고 동일한 볼륨을 공유할 수 있다.
+
+### docker-compose up -d
+
+docker compose를 detached mode로 실행한다.
+
+### docker-compose up --build
+
+강제로 리빌드하고 실행한다.
+
+### docker-compose down -v
+
+docker compose를 종료하고 volume을 삭제한다.
